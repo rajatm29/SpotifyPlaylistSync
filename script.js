@@ -7,24 +7,23 @@ app.events = function() {
     $('form').on('submit', function(e) {
 		e.preventDefault();
 		let artists = $('input[type=search]').val();
-		$('.loader').addClass('show');
-		artists = artists
-			.split(',')
-			.map(app.getArists);
-		
-		$.when(...artists)
-			.then((...artists) => {
-				artists = artists.map(a => a[0].artists.items[0]);
-				console.log(artists);
-				app.getAlbums(artists);
-			});
+		artists = artists.split(',');
 	});
 
 }
 
+app.searchArtists = (artistName) => $.ajax({
+	url: 'https://api.spotify.com/v1/search',
+	method: 'GET',
+	dataType: 'json',
+	data: {
+		q: artistName
+	}
+	
+});
 
 app.init = function () {
-
+	app.events();
 };
 
 $(app.init)
