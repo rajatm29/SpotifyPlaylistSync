@@ -4,13 +4,25 @@
 const app = {};
 
 app.events = function() {
-    $('form').on('submit', function (e) {
-        e.preventDefault();
-        let artists = $('input[type=search]').val();
+    $('form').on('submit', function(e) {
+		e.preventDefault();
+		let artists = $('input[type=search]').val();
+		$('.loader').addClass('show');
+		artists = artists
+			.split(',')
+			.map(app.getArists);
+		
+		$.when(...artists)
+			.then((...artists) => {
+				artists = artists.map(a => a[0].artists.items[0]);
+				console.log(artists);
+				app.getAlbums(artists);
+			});
+	});
 
-        console.log(artists)
-    })
 }
+
+
 app.init = function () {
 
 };
