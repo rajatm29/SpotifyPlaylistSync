@@ -8,10 +8,13 @@ app.events = function() {
 		e.preventDefault();
 		let artists = $('input[type=search]').val();
 		artists = artists.split(',');
+	    	let search = artists.map(artistName => app.searchArtists(artistsName));
+	    	console.log(search)
 	});
 
 }
 
+//getting the artists name using spotify 
 app.searchArtists = (artistName) => $.ajax({
 	url: 'https://api.spotify.com/v1/search',
 	method: 'GET',
