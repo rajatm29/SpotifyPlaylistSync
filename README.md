@@ -5,4 +5,4 @@
 - [getting tracks](https://developer.spotify.com/web-api/get-playlists-tracks/)
 - [getting users playlists](https://developer.spotify.com/web-api/get-list-users-playlists/)
 
--work in in React
+- work in in React
